@@ -1,38 +1,32 @@
-import { useEffect, useState } from "react";
-import { useDispatchCart } from "../Contexts/Cart";
+import { useDispatchProduct } from "../Contexts/Product";
 import Qty from "./Qty";
 
 const ProductCard = ({ product }) => {
-  const dispatch = useDispatchCart();
-  // let [quantity, setQuantity] = useState(0);
+  const dispatch = useDispatchProduct();
   const increaseQuntity = (item) => {
-    // quantity = quantity + 1;
-    // setQuantity(quantity);
-    // dispatch({ type: "ADD", item });
+    dispatch({ type: "INCREASE", item });
   };
   const decreseQuantity = (item) => {
-    // if (quantity <= 0) return;
-    // quantity = quantity - 1;
-    // setQuantity(quantity);
+    if (item.quantity <= 0) return;
+    dispatch({ type: "DECRESE", item });
   };
-  console.log('product card renderd',product.price)
   return (
     <div className="product_card_base">
       <img className="product_image" src={product.image} alt="" />
       <p className="product_discription">{product.name}</p>
-      <div className="product_price">Rs {product.price}</div>
-      {quantity <= 0 ? (
+      <div className="product_price">Rs {product.price}.00</div>
+      {product.quantity <= 0 ? (
         <button
-          onClick={() => product.increase()}
+          onClick={() => increaseQuntity(product)}
           className="btn btn--block"
         >
           Add to Cart
         </button>
       ) : (
         <Qty
-          decreseQuantity={() => decreseQuantity(product)}
           increaseQuntity={() => increaseQuntity(product)}
-          quantity={quantity}
+          decreseQuantity={() => decreseQuantity(product)}
+          quantity={product.quantity}
         />
       )}
     </div>

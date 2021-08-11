@@ -40,11 +40,17 @@ const NavBar = () => {
               <li className="list__item">
                 <NavLink to="/product/:hair_care">Hair care</NavLink>
               </li>
-              <li className="list__item">0719138538</li>
+              <li className="list__item">
+                <a href="tel:0719138538">0719138538</a>
+              </li>
             </ul>
           </div>
           <ShoppingCartIcon
             mouseEnter={() => {
+              setSideNav(false);
+              setCart(true);
+            }}
+            onClick={() => {
               setSideNav(false);
               setCart(true);
             }}
@@ -53,6 +59,7 @@ const NavBar = () => {
       </div>
       <ShoppingCart showCart={showCart} hideCart={() => setCart(false)} />
       <SideNav
+  
         showSideNav={showSideNav}
         hideSideNav={() => setSideNav(false)}
       />

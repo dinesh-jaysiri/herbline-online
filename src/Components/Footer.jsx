@@ -11,9 +11,11 @@ const Footer = () => {
           <svg className="icon">
             <use xlinkHref={sprite + "#facebook"}></use>
           </svg>
-          <svg className="icon">
-            <use xlinkHref={sprite + "#whatsapp"}></use>
-          </svg>
+          <a href="https://wa.me/+94719138538">
+            <svg className="icon">
+              <use xlinkHref={sprite + "#whatsapp"}></use>
+            </svg>
+          </a>
         </div>
       </div>
       <div className="copy_right">

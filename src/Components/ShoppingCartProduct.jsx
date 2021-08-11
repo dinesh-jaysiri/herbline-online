@@ -1,5 +1,11 @@
-import image from "../Images/skinCare/image.jpg";
-const ShoppingCartProduct = ({product}) => {
+import { useDispatchProduct } from "../Contexts/Product";
+
+
+const ShoppingCartProduct = ({ product }) => {
+  const dispatch = useDispatchProduct();
+  const close = (item) => {
+    dispatch({ type: "CLOSE", item });
+  };
     return (
       <div className="cart_product">
         <img className="cart_product_image" src={product.image} alt="" />
@@ -7,9 +13,9 @@ const ShoppingCartProduct = ({product}) => {
           <p className="cart_product_discription">
             {product.name}
           </p>
-          <article className="cart_product_price">{`1 X Rs ${product.price}`}</article>
+          <article className="cart_product_price">{`${product.quantity} X Rs ${product.price}.00`}</article>
         </div>
-        <button className="close_btn close_btn_round">X</button>
+        <button onClick={()=>close(product)} className="close_btn close_btn_round">X</button>
       </div>
     );
 }
